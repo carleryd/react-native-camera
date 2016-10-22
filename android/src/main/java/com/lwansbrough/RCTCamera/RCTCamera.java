@@ -187,7 +187,8 @@ public class RCTCamera {
                 pictureSize = sizes.get(sizes.size() / 2);
                 break;
             case RCTCameraModule.RCT_CAMERA_CAPTURE_QUALITY_HIGH:
-                pictureSize = getBestSize(parameters.getSupportedPictureSizes(), Integer.MAX_VALUE, Integer.MAX_VALUE);
+                pictureSize = getBestSize(parameters.getSupportedPictureSizes(), 1500, 1500);
+                // pictureSize = getBestSize(parameters.getSupportedPictureSizes(), Integer.MAX_VALUE, Integer.MAX_VALUE);
         }
 
         if (pictureSize != null) {
