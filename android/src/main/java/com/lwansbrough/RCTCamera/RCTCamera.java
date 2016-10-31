@@ -216,7 +216,7 @@ public class RCTCamera {
                 cm = CamcorderProfile.get(_cameraTypeToIndex.get(cameraType), CamcorderProfile.QUALITY_720P);
                 break;
             case RCTCameraModule.RCT_CAMERA_CAPTURE_QUALITY_HIGH:
-                videoSize = getBestSize(getSupportedVideoSizes(camera), 1500, 1500);
+                videoSize = getBestSize(getSupportedVideoSizes(camera), 500, 500);
                 // videoSize = getBestSize(getSupportedVideoSizes(camera), Integer.MAX_VALUE, Integer.MAX_VALUE);
                 cm = CamcorderProfile.get(_cameraTypeToIndex.get(cameraType), CamcorderProfile.QUALITY_HIGH);
         }
