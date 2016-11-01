@@ -19,7 +19,8 @@ public class RCTCameraView extends ViewGroup {
     private RCTCameraViewFinder _viewFinder = null;
     private int _actualDeviceOrientation = -1;
     private int _aspect = RCTCameraModule.RCT_CAMERA_ASPECT_FIT;
-    private String _captureQuality = "high";
+    private int _imageCaptureQuality = 500;
+    private int _videoCaptureQuality = 500;
     private int _torchMode = -1;
     private int _flashMode = -1;
 
