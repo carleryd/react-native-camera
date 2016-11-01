@@ -170,7 +170,7 @@ public class RCTCamera {
         adjustPreviewLayout(RCTCameraModule.RCT_CAMERA_TYPE_BACK);
     }
 
-    public void setCaptureImageQuality(int cameraType, int max) {
+    public void setImageCaptureQuality(int cameraType, int max) {
         Camera camera = _cameras.get(cameraType);
         if (camera == null) {
             return;
@@ -198,7 +198,7 @@ public class RCTCamera {
     }
 
     // public CamcorderProfile setCaptureVideoQuality(int cameraType, String captureQuality) {
-    public CamcorderProfile setCaptureVideoQuality(int cameraType, int max) {//, String videoQuality) {
+    public CamcorderProfile setVideoCaptureQuality(int cameraType, int max) {//, String videoQuality) {
         Camera camera = _cameras.get(cameraType);
         if (camera == null) {
             return null;
