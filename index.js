@@ -31,11 +31,20 @@ function convertNativeProps(props) {
   }
 
   if (typeof props.type === 'string') {
-    newProps.type = Camera.constants.Type[props.type];
+      newProps.type = Camera.constants.Type[props.type];
   }
 
+  // still needed for iOS
   if (typeof props.captureQuality === 'string') {
     newProps.captureQuality = Camera.constants.CaptureQuality[props.captureQuality];
+  }
+
+  if (typeof props.imageCaptureQuality === 'number') {
+    newProps.imageCaptureQuality = props.imageCaptureQuality;
+  }
+
+  if (typeof props.videoCaptureQuality === 'number') {
+    newProps.videoCaptureQuality = props.videoCaptureQuality;
   }
 
   if (typeof props.captureMode === 'string') {
@@ -210,7 +219,8 @@ export default class Camera extends Component {
       mode: props.captureMode,
       playSoundOnCapture: props.playSoundOnCapture,
       target: props.captureTarget,
-      quality: props.captureQuality,
+      imageCaptureQuality: props.imageCaptureQuality,
+      videoCaptureQuality: props.videoCaptureQuality,
       type: props.type,
       title: '',
       description: '',
