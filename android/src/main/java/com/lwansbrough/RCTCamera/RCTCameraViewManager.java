@@ -42,9 +42,14 @@ public class RCTCameraViewManager extends ViewGroupManager<RCTCameraView> {
         view.setCameraType(type);
     }
 
-    @ReactProp(name = "captureQuality")
-    public void setCaptureQuality(RCTCameraView view, String captureQuality) {
-        view.setCaptureQuality(captureQuality);
+    @ReactProp(name = "imageCaptureQuality")
+    public void setImageCaptureQuality(RCTCameraView view, int quality) {
+        view.setImageCaptureQuality(quality);
+    }
+
+    @ReactProp(name = "videoCaptureQuality")
+    public void setVideoCaptureQuality(RCTCameraView view, int quality) {
+        view.setVideoCaptureQuality(quality);
     }
 
     @ReactProp(name = "torchMode")
