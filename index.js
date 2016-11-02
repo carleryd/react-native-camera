@@ -39,12 +39,12 @@ function convertNativeProps(props) {
     newProps.captureQuality = Camera.constants.CaptureQuality[props.captureQuality];
   }
 
-  if (typeof props.imageCaptureQuality === 'number') {
-    newProps.imageCaptureQuality = props.imageCaptureQuality;
+  if (typeof props.imageCaptureResolution === 'object') {
+    newProps.imageCaptureResolution = props.imageCaptureResolution;
   }
 
-  if (typeof props.videoCaptureQuality === 'number') {
-    newProps.videoCaptureQuality = props.videoCaptureQuality;
+  if (typeof props.videoCaptureResolution === 'object') {
+    newProps.videoCaptureResolution = props.videoCaptureResolution;
   }
 
   if (typeof props.captureMode === 'string') {
@@ -129,6 +129,8 @@ export default class Camera extends Component {
     captureMode: CameraManager.CaptureMode.still,
     captureTarget: CameraManager.CaptureTarget.cameraRoll,
     captureQuality: CameraManager.CaptureQuality.high,
+    imageCaptureResolution: { width: 800, height: 800 },
+    videoCaptureResolution: { width: 400, height: 400 },
     defaultOnFocusComponent: true,
     flashMode: CameraManager.FlashMode.off,
     playSoundOnCapture: true,
@@ -219,8 +221,8 @@ export default class Camera extends Component {
       mode: props.captureMode,
       playSoundOnCapture: props.playSoundOnCapture,
       target: props.captureTarget,
-      imageCaptureQuality: props.imageCaptureQuality,
-      videoCaptureQuality: props.videoCaptureQuality,
+      imageCaptureResolution: props.imageCaptureResolution,
+      videoCaptureResolution: props.videoCaptureResolution,
       type: props.type,
       title: '',
       description: '',

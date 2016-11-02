@@ -170,26 +170,14 @@ public class RCTCamera {
         adjustPreviewLayout(RCTCameraModule.RCT_CAMERA_TYPE_BACK);
     }
 
-    public void setImageCaptureQuality(int cameraType, int max) {
+    public void setImageCaptureQuality(int cameraType, Resolution res) {
         Camera camera = _cameras.get(cameraType);
         if (camera == null) {
             return;
         }
 
         Camera.Parameters parameters = camera.getParameters();
-        Camera.Size pictureSize = getBestSize(parameters.getSupportedPictureSizes(), max, max);
-        // switch (captureQuality) {
-        //     case RCTCameraModule.RCT_CAMERA_CAPTURE_QUALITY_LOW:
-        //         pictureSize = getSmallestSize(parameters.getSupportedPictureSizes());
-        //         break;
-        //     case RCTCameraModule.RCT_CAMERA_CAPTURE_QUALITY_MEDIUM:
-        //         List<Camera.Size> sizes = parameters.getSupportedPictureSizes();
-        //         pictureSize = sizes.get(sizes.size() / 2);
-        //         break;
-        //     case RCTCameraModule.RCT_CAMERA_CAPTURE_QUALITY_HIGH:
-        //         pictureSize = getBestSize(parameters.getSupportedPictureSizes(), 1500, 1500);
-        //         // pictureSize = getBestSize(parameters.getSupportedPictureSizes(), Integer.MAX_VALUE, Integer.MAX_VALUE);
-        // }
+        Camera.Size pictureSize = getBestSize(parameters.getSupportedPictureSizes(), res.width, res.height);
 
         if (pictureSize != null) {
             parameters.setPictureSize(pictureSize.width, pictureSize.height);
@@ -197,32 +185,15 @@ public class RCTCamera {
         }
     }
 
-    // public CamcorderProfile setCaptureVideoQuality(int cameraType, String captureQuality) {
-    public CamcorderProfile setVideoCaptureQuality(int cameraType, int max) {//, String videoQuality) {
+    public CamcorderProfile setVideoCaptureQuality(int cameraType, Resolution res) {
         Camera camera = _cameras.get(cameraType);
         if (camera == null) {
             return null;
         }
 
-        Camera.Size videoSize = getBestSize(getSupportedVideoSizes(camera), max, max);
+        Camera.Size videoSize = getBestSize(getSupportedVideoSizes(camera), res.width, res.height);
         CamcorderProfile cm = CamcorderProfile.get(_cameraTypeToIndex.get(cameraType), CamcorderProfile.QUALITY_480P);
 
-        // switch (captureQuality) {
-        //     case RCTCameraModule.RCT_CAMERA_CAPTURE_QUALITY_LOW:
-        //         videoSize = getSmallestSize(getSupportedVideoSizes(camera));
-        //         cm = CamcorderProfile.get(_cameraTypeToIndex.get(cameraType), CamcorderProfile.QUALITY_480P);
-        //         break;
-        //     case RCTCameraModule.RCT_CAMERA_CAPTURE_QUALITY_MEDIUM:
-        //         List<Camera.Size> sizes = getSupportedVideoSizes(camera);
-        //         videoSize = sizes.get(sizes.size() / 2);
-        //         cm = CamcorderProfile.get(_cameraTypeToIndex.get(cameraType), CamcorderProfile.QUALITY_720P);
-        //         break;
-        //     case RCTCameraModule.RCT_CAMERA_CAPTURE_QUALITY_HIGH:
-        //         videoSize = getBestSize(getSupportedVideoSizes(camera), 500, 500);
-        //         // videoSize = getBestSize(getSupportedVideoSizes(camera), Integer.MAX_VALUE, Integer.MAX_VALUE);
-        //         cm = CamcorderProfile.get(_cameraTypeToIndex.get(cameraType), CamcorderProfile.QUALITY_480P);
-        // }
-        //
         if (cm == null){
             return null;
         }

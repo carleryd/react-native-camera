@@ -13,14 +13,23 @@ import android.view.View;
 
 import java.util.List;
 
+class Resolution {
+    Resolution(int newWidth, int newHeight) {
+        width = newWidth;
+        height = newHeight;
+    }
+    public int width;
+    public int height;
+}
+
 public class RCTCameraView extends ViewGroup {
     private final OrientationEventListener _orientationListener;
     private final Context _context;
     private RCTCameraViewFinder _viewFinder = null;
     private int _actualDeviceOrientation = -1;
     private int _aspect = RCTCameraModule.RCT_CAMERA_ASPECT_FIT;
-    private int _imageCaptureQuality = 500;
-    private int _videoCaptureQuality = 500;
+    private Resolution _imageCaptureResolution = new Resolution(800, 800);
+    private Resolution _videoCaptureResolution = new Resolution(400, 400);
     private int _torchMode = -1;
     private int _flashMode = -1;
 
@@ -80,17 +89,17 @@ public class RCTCameraView extends ViewGroup {
         }
     }
 
-    public void setImageCaptureQuality(int quality) {
-        this._imageCaptureQuality = quality;
+    public void setImageCaptureResolution(Resolution resolution) {
+        this._imageCaptureResolution = resolution;
         if (this._viewFinder != null) {
-            this._viewFinder.setImageCaptureQuality(quality);
+            this._viewFinder.setImageCaptureResolution(resolution);
         }
     }
 
-    public void setVideoCaptureQuality(int quality) {
-        this._videoCaptureQuality = quality;
+    public void setVideoCaptureResolution(Resolution resolution) {
+        this._videoCaptureResolution = resolution;
         if (this._viewFinder != null) {
-            this._viewFinder.setVideoCaptureQuality(quality);
+            this._viewFinder.setVideoCaptureResolution(resolution);
         }
     }
 
