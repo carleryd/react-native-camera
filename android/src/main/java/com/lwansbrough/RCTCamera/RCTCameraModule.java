@@ -491,7 +491,7 @@ public class RCTCameraModule extends ReactContextBaseJavaModule
             return;
         }
 
-            RCTCamera.getInstance().setImageCaptureResolution(options.getInt("type"), options.getMap("imageCaptureResolution"));
+        RCTCamera.getInstance().setImageCaptureResolution(options.getInt("type"), options.getMap("imageCaptureResolution"));
 
         if (options.hasKey("playSoundOnCapture") && options.getBoolean("playSoundOnCapture")) {
             MediaActionSound sound = new MediaActionSound();

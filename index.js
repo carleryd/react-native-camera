@@ -90,6 +90,14 @@ export default class Camera extends Component {
       PropTypes.string,
       PropTypes.number
     ]),
+    imageCaptureResolution: PropTypes.shape({
+        width: PropTypes.number.isRequired,
+        height: PropTypes.number.isRequired,
+    }),
+    videoCaptureResolution: PropTypes.shape({
+        width: PropTypes.number.isRequired,
+        height: PropTypes.number.isRequired,
+    }),
     captureTarget: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.number
