@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.View;
 
+import com.facebook.react.bridge.ReadableMap;
+
 import java.util.List;
 
 class Resolution {
@@ -89,15 +91,15 @@ public class RCTCameraView extends ViewGroup {
         }
     }
 
-    public void setImageCaptureResolution(Resolution resolution) {
-        this._imageCaptureResolution = resolution;
+    public void setImageCaptureResolution(ReadableMap resolution) {
+        this._imageCaptureResolution = new Resolution(resolution.getInt("width"), resolution.getInt("height"));
         if (this._viewFinder != null) {
             this._viewFinder.setImageCaptureResolution(resolution);
         }
     }
 
-    public void setVideoCaptureResolution(Resolution resolution) {
-        this._videoCaptureResolution = resolution;
+    public void setVideoCaptureResolution(ReadableMap resolution) {
+        this._videoCaptureResolution = new Resolution(resolution.getInt("width"), resolution.getInt("height"));
         if (this._viewFinder != null) {
             this._viewFinder.setVideoCaptureResolution(resolution);
         }

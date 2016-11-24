@@ -8,6 +8,8 @@ import android.hardware.Camera;
 import android.media.CamcorderProfile;
 import android.util.Log;
 
+import com.facebook.react.bridge.ReadableMap;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -170,14 +172,14 @@ public class RCTCamera {
         adjustPreviewLayout(RCTCameraModule.RCT_CAMERA_TYPE_BACK);
     }
 
-    public void setImageCaptureQuality(int cameraType, Resolution res) {
+    public void setImageCaptureResolution(int cameraType, ReadableMap res) {
         Camera camera = _cameras.get(cameraType);
         if (camera == null) {
             return;
         }
 
         Camera.Parameters parameters = camera.getParameters();
-        Camera.Size pictureSize = getBestSize(parameters.getSupportedPictureSizes(), res.width, res.height);
+        Camera.Size pictureSize = getBestSize(parameters.getSupportedPictureSizes(), res.getInt("width"), res.getInt("height"));
 
         if (pictureSize != null) {
             parameters.setPictureSize(pictureSize.width, pictureSize.height);
@@ -185,13 +187,13 @@ public class RCTCamera {
         }
     }
 
-    public CamcorderProfile setVideoCaptureQuality(int cameraType, Resolution res) {
+    public CamcorderProfile setVideoCaptureResolution(int cameraType, ReadableMap res) {
         Camera camera = _cameras.get(cameraType);
         if (camera == null) {
             return null;
         }
 
-        Camera.Size videoSize = getBestSize(getSupportedVideoSizes(camera), res.width, res.height);
+        Camera.Size videoSize = getBestSize(getSupportedVideoSizes(camera), res.getInt("width"), res.getInt("height"));
         CamcorderProfile cm = CamcorderProfile.get(_cameraTypeToIndex.get(cameraType), CamcorderProfile.QUALITY_480P);
 
         if (cm == null){

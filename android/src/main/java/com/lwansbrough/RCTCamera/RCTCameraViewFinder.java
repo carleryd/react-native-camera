@@ -14,6 +14,7 @@ import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
+import com.facebook.react.bridge.ReadableMap;
 
 import java.util.List;
 import java.util.EnumMap;
@@ -26,6 +27,15 @@ import com.google.zxing.MultiFormatReader;
 import com.google.zxing.PlanarYUVLuminanceSource;
 import com.google.zxing.Result;
 import com.google.zxing.common.HybridBinarizer;
+
+// class Resolution {
+//     Resolution(int newWidth, int newHeight) {
+//         width = newWidth;
+//         height = newHeight;
+//     }
+//     public int width;
+//     public int height;
+// }
 
 class RCTCameraViewFinder extends TextureView implements TextureView.SurfaceTextureListener, Camera.PreviewCallback {
     private int _cameraType;
@@ -88,12 +98,12 @@ class RCTCameraViewFinder extends TextureView implements TextureView.SurfaceText
         }).start();
     }
 
-    public void setImageCaptureQuality(int quality) {
-        RCTCamera.getInstance().setImageCaptureQuality(_cameraType, quality);
+    public void setImageCaptureResolution(ReadableMap resolution) {
+        RCTCamera.getInstance().setImageCaptureResolution(_cameraType, resolution);
     }
 
-    public void setVideoCaptureQuality(int quality) {
-        RCTCamera.getInstance().setVideoCaptureQuality(_cameraType, quality);
+    public void setVideoCaptureResolution(ReadableMap resolution) {
+        RCTCamera.getInstance().setVideoCaptureResolution(_cameraType, resolution);
     }
 
     public void setTorchMode(int torchMode) {

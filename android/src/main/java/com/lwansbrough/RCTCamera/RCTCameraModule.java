@@ -223,7 +223,7 @@ public class RCTCameraModule extends ReactContextBaseJavaModule
     }
 
     private Throwable prepareMediaRecorder(ReadableMap options) {
-        CamcorderProfile cm = RCTCamera.getInstance().setVideoCaptureQuality(options.getInt("type"), options.getInt("videoCaptureQuality"));
+        CamcorderProfile cm = RCTCamera.getInstance().setVideoCaptureResolution(options.getInt("type"), options.getMap("videoCaptureResolution"));
 
         // Attach callback to handle maxDuration (@see onInfo method in this file)
         mMediaRecorder.setOnInfoListener(this);
@@ -491,15 +491,15 @@ public class RCTCameraModule extends ReactContextBaseJavaModule
             return;
         }
 
-            RCTCamera.getInstance().setImageCaptureQuality(options.getInt("type"), options.getInt("imageCaptureQuality"));
+            RCTCamera.getInstance().setImageCaptureResolution(options.getInt("type"), options.getMap("imageCaptureResolution"));
 
         if (options.hasKey("playSoundOnCapture") && options.getBoolean("playSoundOnCapture")) {
             MediaActionSound sound = new MediaActionSound();
             sound.play(MediaActionSound.SHUTTER_CLICK);
         }
 
-        if (options.hasKey("imageCaptureQuality")) {
-            RCTCamera.getInstance().setImageCaptureQuality(options.getInt("type"), options.getInt("imageCaptureQuality"));
+        if (options.hasKey("imageCaptureResolution")) {
+            RCTCamera.getInstance().setImageCaptureResolution(options.getInt("type"), options.getMap("imageCaptureResolution"));
         }
 
         final Boolean shouldMirror = options.hasKey("mirrorImage") && options.getBoolean("mirrorImage");

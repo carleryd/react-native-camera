@@ -2,6 +2,7 @@ package com.lwansbrough.RCTCamera;
 
 import android.support.annotation.Nullable;
 
+import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.uimanager.*;
 import com.facebook.react.uimanager.annotations.ReactProp;
@@ -43,12 +44,12 @@ public class RCTCameraViewManager extends ViewGroupManager<RCTCameraView> {
     }
 
     @ReactProp(name = "imageCaptureResolution")
-    public void setImageCaptureResolution(RCTCameraView view, Resolution resolution) {
+    public void setImageCaptureResolution(RCTCameraView view, ReadableMap resolution) {
         view.setImageCaptureResolution(resolution);
     }
 
     @ReactProp(name = "videoCaptureResolution")
-    public void setVideoCaptureResolution(RCTCameraView view, Resolution resolution) {
+    public void setVideoCaptureResolution(RCTCameraView view, ReadableMap resolution) {
         view.setVideoCaptureResolution(resolution);
     }
 
